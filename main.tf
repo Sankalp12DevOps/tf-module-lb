@@ -3,7 +3,7 @@ resource "aws_lb" "test" {
   internal           =  var.INTERNAL
   load_balancer_type =  var.LB_TYPE
   security_groups    =  var.INTERNAL ? [aws_security_group.allow_tls_prvt_lb.*.id] : [aws_security_group.allow_tls_pblc_lb.*.id]
-  subnets            =  var.INTERNAL ? data.terraform_remote_state.vpc.outputs.PRVT_SUBNET : data.terraform_remote_state.vpc.outputs.PBLC_SUBNET
+  subnets            =  var.INTERNAL ? [data.terraform_remote_state.vpc.outputs.PRVT_SUBNET] : [data.terraform_remote_state.vpc.outputs.PBLC_SUBNET]
   enable_deletion_protection = true
 
   # access_logs {
