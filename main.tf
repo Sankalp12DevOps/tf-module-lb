@@ -1,5 +1,5 @@
 resource "aws_lb" "test" {
-  name               =  "test-lb-tf"
+  name               =  "test-lb-tf-${var.LB_TYPE}"
   internal           =  var.INTERNAL
   load_balancer_type =  var.LB_TYPE
   security_groups    =  var.INTERNAL ? [aws_security_group.allow_tls_prvt_lb.*.id] : [aws_security_group.allow_tls_pblc_lb.*.id]
